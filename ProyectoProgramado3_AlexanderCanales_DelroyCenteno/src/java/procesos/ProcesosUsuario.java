@@ -24,9 +24,7 @@ import javax.swing.table.DefaultTableModel;
     	private Conex conDB;
 
     private PreparedStatement psInsertar = null;
-	private PreparedStatement psEliminar = null;
-	private PreparedStatement psModificar = null;
-	private PreparedStatement psMostrar = null;
+	
 	private PreparedStatement psConsulta = null;
         	String respuesta = "ERROR CATASTROFICO CON LA CONEXION!!!";
    
