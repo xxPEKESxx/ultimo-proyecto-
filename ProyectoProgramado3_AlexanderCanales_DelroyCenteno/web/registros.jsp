@@ -50,15 +50,15 @@
 					</tr>
 					<tr>
 						<td><font face="Comic Sans MS" color="White">Apellido 2:</font></td>
-						<td><input type="text" name="Apellido2" value=""></td>
+						<td><input type="text" name="apellido2" value=""></td>
 					</tr>
 					<tr>
 						<td><font face="Comic Sans MS" color="White"> Nom Usuario:</font></td>
-						<td><input type="text" name="Usuario" value=""></td>
+						<td><input type="text" name="usuario" value=""></td>
 					</tr>
 					<tr>
 						<td><font face="Comic Sans MS" color="White">Clave:</font></td>
-						<td><input type="password" name="Clave" value=""></td>
+						<td><input type="password" name="clave" value=""></td>
 					</tr>
 					
 				

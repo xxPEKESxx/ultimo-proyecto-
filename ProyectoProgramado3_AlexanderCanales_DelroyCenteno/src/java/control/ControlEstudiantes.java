@@ -1,7 +1,9 @@
 package control;
 
+import conexion.Conex;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,31 +12,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import procesos.Procesosestudiante;
+import procesos.Procesosestudiantes;
 
 @WebServlet("/ControlEstudiantes")
 public class ControlEstudiantes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-        Procesosestudiante adminEstudiantes;
-	private String rutaDB;
+        Procesosestudiantes adminEstudiantes;
+	 
 
 	public ControlEstudiantes() {
 		super();
-                adminEstudiantes = new Procesosestudiante(this);
+                adminEstudiantes = new Procesosestudiantes();
 	}
 
 	protected void doPost(HttpServletRequest peticion,
 			HttpServletResponse respuesta) throws ServletException, IOException {
 
-	
+
 		
 		System.out.println("Si llegamos al control de estudiantes");
 		
-		if (peticion.getParameter("insertar") != null) {
+		if (peticion.getParameter("agrega") != null) {
 			respuesta(peticion, respuesta, insertar(peticion));
 
-		} 
+		} else{
+                    System.out.println("MAL muy mal");
+                }   
 
 	}
 
@@ -51,7 +55,7 @@ public class ControlEstudiantes extends HttpServlet {
 			String carrera = peticion.getParameter("carrera");
 		
 
-			respuesta = adminEstudiantes.insertar(carnet, nombre, apellido2, apellido2, carrera);
+			respuesta = adminEstudiantes.insertar(carnet, nombre, apellido1, apellido2, carrera);
 
 		} catch (NumberFormatException nfex) {
 			nfex.printStackTrace();

@@ -41,7 +41,7 @@
 		<nav>
 		
 		
-			<a href="registros.jsp">USUARIOS</a>
+			
 			<a href="reporte.jsp">REPORTE</a>
 			<a href="estudiantes.jsp">MANTENIMIENTO DE ESTUDIANTES</a>
                         <a href="Salir">Salir</a>

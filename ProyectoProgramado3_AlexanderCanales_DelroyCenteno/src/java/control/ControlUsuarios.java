@@ -24,16 +24,13 @@ public class ControlUsuarios extends HttpServlet {
 
 	public ControlUsuarios() {
 		super();
-                adminUsuarios = new ProcesosUsuario(this);
+                adminUsuarios = new ProcesosUsuario();
 	}
 
 	protected void doPost(HttpServletRequest peticion,
 			HttpServletResponse respuesta) throws ServletException, IOException {
 
-	
-		
-
-		if (null != peticion.getParameter("insertar")) {
+	if (null != peticion.getParameter("insertar")) {
 			respuesta(peticion, respuesta, insertar(peticion));
 
 		} 
