@@ -1,9 +1,9 @@
 package control;
 
-import conexion.Conex;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import procesos.Procesosestudiantes;
 public class ControlEstudiantes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-        Procesosestudiantes adminEstudiantes;
+      private   Procesosestudiantes adminEstudiantes;
 	 
 
 	public ControlEstudiantes() {
@@ -33,12 +33,15 @@ public class ControlEstudiantes extends HttpServlet {
 		
 		System.out.println("Si llegamos al control de estudiantes");
 		
-		if (peticion.getParameter("agrega") != null) {
+		if (null != peticion.getParameter("agrega") ) {
 			respuesta(peticion, respuesta, insertar(peticion));
 
-		} else{
-                    System.out.println("MAL muy mal");
-                }   
+		}else  if (peticion.getParameter("mostrar") != null) {
+			respuesta_r(peticion, respuesta, "Productos Listados");
+			mostrar(peticion, respuesta, mostrar());
+
+		}
+                         
 
 	}
 
@@ -59,15 +62,55 @@ public class ControlEstudiantes extends HttpServlet {
 
 		} catch (NumberFormatException nfex) {
 			nfex.printStackTrace();
-			respuesta = "En la edad solo se permiten numeros";
+			
 		}
 
 		return respuesta;
 	}
 
+private String mostrar() {
 
+		String r = "";
 
+		r = adminEstudiantes.mostrar();
+		
+		return r;
 
+	}
+private void mostrar(HttpServletRequest peticion,
+			HttpServletResponse respuesta, String res) {
+
+		try {
+			PrintWriter pw = respuesta.getWriter();
+			String script = "<script type='text/javascript'>"
+					+ "document.getElementById('reporte').innerHTML = \""+ res
+					+ "\";</script>";
+			pw.println(script);
+		
+		} catch (IOException ioex) {
+			ioex.printStackTrace();
+			
+		} 
+
+	}
+private void respuesta_r(HttpServletRequest peticion ,HttpServletResponse respuesta, String res) {
+
+		try {
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(
+					"/reporte.jsp");
+			PrintWriter pw = respuesta.getWriter();
+			
+			rd.include(peticion, respuesta);
+			
+		} catch (IOException ioex) {
+			ioex.printStackTrace();
+			
+		} catch (ServletException sex) {
+			sex.printStackTrace();
+			
+		}
+
+	}
 
 	private void respuesta(HttpServletRequest peticion ,HttpServletResponse respuesta, String res) {
 

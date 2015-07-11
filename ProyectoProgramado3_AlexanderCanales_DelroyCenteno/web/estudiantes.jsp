@@ -40,7 +40,7 @@
 	
 	
 		<article>
-			<form name="Procesosestudiantes" method="post" action="ControlEstudiantes">
+			<form method="post" action="ControlEstudiantes">
 				<table border="1">
 					<tr>
                                             <td><b><font face="Comic Sans MS" color="White">Carnet:</font></b></td>

@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 
 import conexion.Conex;
 
@@ -15,11 +15,11 @@ public class ProcesosUsuario {
 
 	
 
-	private PreparedStatement psInsertar = null;
-	
-	private PreparedStatement psBuscar = null;
+private PreparedStatement psInsertar = null;
+private PreparedStatement psBuscar = null;
 private Connection conexion = null;
 private Conex conDB;
+
 	public ProcesosUsuario() {
 		conDB = new Conex();
 	
@@ -36,8 +36,8 @@ private Conex conDB;
 		
 
 			if (!existe_cedula(cedula)) {
-
-				conexion = Conex.getConexion();
+                            if (!existe_usuario(usuario)) {
+                                conexion = Conex.getConexion();
 				psInsertar = conexion
 						.prepareStatement("INSERT INTO usuarios (cedula, nombre, apellido1, apellido2, usuario, clave)"
 								+ "VALUES ( ?, ?, ?, ?, ?, ?);");
@@ -52,9 +52,13 @@ private Conex conDB;
 				psInsertar.executeUpdate();
 
 				respuesta = "Usuario insertado con exito";
+                            }else{
+                            respuesta="YA existe un usuario con ese nombre de usuario";
+                            }
+				
 			
 			} else 
-				respuesta = "El nombre de usuario ya esta en uso";
+				respuesta = "La cedula ya esta en uso";
 			
 
 		} catch (SQLException sqlex) {
